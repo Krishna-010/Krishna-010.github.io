@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 600">
+  <defs>
+    <style>
+      .bg { fill: #0b1121; }
+      .card { fill: #0f172a; stroke: #1e293b; stroke-width: 2px; rx: 16px; }
+      .text-h1 { fill: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 26px; font-weight: 700; text-anchor: middle; }
+      .text-h2 { fill: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; }
+      .text-sub { fill: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 400; text-anchor: middle; }
+      .text-accent { fill: #10b981; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 16px; font-weight: 600; text-anchor: middle; }
+      .text-alert { fill: #f59e0b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 600; text-anchor: middle; }
+      .text-critical { fill: #ef4444; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 600; text-anchor: middle; }
+      .stat-box { fill: #1e293b; rx: 8px; }
+      .arrow { stroke: #475569; stroke-width: 3px; fill: none; }
+      .arrow-head { fill: #475569; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head" />
+    </marker>
+  </defs>
+
+  <rect width="1800" height="600" class="bg" />
+
+  <!-- Connector Arrows -->
+  <path d="M 520 300 L 610 300" class="arrow" marker-end="url(#arrow)" />
+  <path d="M 1110 300 L 1200 300" class="arrow" marker-end="url(#arrow)" />
+
+  <!-- SECTION 1: Dataset -->
+  <rect x="80" y="80" width="440" height="440" class="card" />
+  <text x="300" y="140" class="text-h1">Custom Bilingual Dataset</text>
+  
+  <rect x="120" y="180" width="360" height="90" class="stat-box" />
+  <text x="180" y="230" class="text-h2">English</text>
+  <text x="350" y="215" class="text-sub">808 utterances</text>
+  <text x="350" y="240" class="text-sub">4,830 s  (80.5 min)</text>
+
+  <rect x="120" y="290" width="360" height="90" class="stat-box" />
+  <text x="180" y="340" class="text-h2">Japanese</text>
+  <text x="350" y="325" class="text-sub">276 utterances</text>
+  <text x="350" y="350" class="text-sub">1,032.5 s  (17.2 min)</text>
+
+  <rect x="120" y="410" width="360" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8" />
+  <text x="300" y="440" class="text-accent">1,084 utterances · 97.7 minutes</text>
+
+  <!-- SECTION 2: Experiment -->
+  <rect x="630" y="80" width="460" height="440" class="card" />
+  <text x="860" y="140" class="text-h1">Full-Parameter Fine-Tuning</text>
+  
+  <circle cx="860" cy="240" r="40" fill="none" stroke="#3b82f6" stroke-width="4" />
+  <circle cx="860" cy="240" r="20" fill="#3b82f6" />
+  
+  <text x="860" y="340" class="text-h1" style="font-size: 48px; fill: #10b981;">200 Epochs</text>
+  
+  <rect x="730" y="380" width="260" height="30" class="stat-box" />
+  <text x="860" y="400" class="text-sub" style="font-size: 14px;">English Training Data</text>
+
+  <rect x="730" y="420" width="125" height="30" class="stat-box" />
+  <text x="792" y="440" class="text-sub" style="font-size: 13px;">VALL-E X</text>
+
+  <rect x="865" y="420" width="125" height="30" class="stat-box" />
+  <text x="927" y="440" class="text-sub" style="font-size: 13px;">Vast.ai GPU</text>
+
+  <!-- SECTION 3: Qualitative Result -->
+  <rect x="1220" y="80" width="500" height="440" class="card" />
+  <text x="1470" y="140" class="text-h1">Observed Tradeoff</text>
+  
+  <!-- Left Col: Similarity -->
+  <text x="1350" y="190" class="text-h2">Speaker Characteristics</text>
+  <rect x="1250" y="210" width="200" height="150" class="stat-box" fill="rgba(16, 185, 129, 0.05)" stroke="#10b981" stroke-width="1" />
+  <text x="1350" y="250" class="text-sub" style="font-size: 14px;">Timbre</text>
+  <text x="1350" y="275" class="text-accent">More Similar</text>
+  <line x1="1280" y1="295" x2="1420" y2="295" stroke="#1e293b" stroke-width="1" />
+  <text x="1350" y="325" class="text-sub" style="font-size: 14px;">Intonation</text>
+  <text x="1350" y="350" class="text-accent">More Similar</text>
+
+  <!-- Right Col: Quality -->
+  <text x="1590" y="190" class="text-h2">Synthesis Quality</text>
+  <rect x="1490" y="210" width="200" height="150" class="stat-box" fill="rgba(245, 158, 11, 0.05)" stroke="#f59e0b" stroke-width="1" />
+  <text x="1590" y="250" class="text-sub" style="font-size: 14px;">English Output</text>
+  <text x="1590" y="275" class="text-alert">Syllable Omissions</text>
+  <line x1="1520" y1="295" x2="1660" y2="295" stroke="#1e293b" stroke-width="1" />
+  <text x="1590" y="325" class="text-sub" style="font-size: 14px;">Japanese Output</text>
+  <text x="1590" y="350" class="text-critical">Poor Recognizability</text>
+
+  <!-- Conclusion -->
+  <text x="1470" y="420" class="text-sub" style="font-style: italic;">Speaker fidelity improved, but intelligibility</text>
+  <text x="1470" y="445" class="text-sub" style="font-style: italic;">degraded under aggressive adaptation.</text>
+
+</svg>

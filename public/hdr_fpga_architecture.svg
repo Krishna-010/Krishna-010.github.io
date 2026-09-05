@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 600">
+  <defs>
+    <style>
+      .bg { fill: #0b1121; }
+      .box { fill: #0f172a; stroke: #1e293b; stroke-width: 2px; rx: 12px; }
+      .box-green { fill: #0f172a; stroke: #10b981; stroke-width: 2px; rx: 12px; }
+      .box-dashed { fill: transparent; stroke: #475569; stroke-width: 2px; stroke-dasharray: 8 4; rx: 12px; }
+      .glow { filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.3)); }
+      .text-title { fill: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 20px; font-weight: 600; text-anchor: middle; }
+      .text-sub { fill: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 15px; font-weight: 400; text-anchor: middle; }
+      .text-accent { fill: #10b981; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 16px; font-weight: 600; text-anchor: middle; }
+      .line { stroke: #475569; stroke-width: 3px; fill: none; }
+      .line-green { stroke: #10b981; stroke-width: 4px; fill: none; }
+      .line-dashed { stroke: #475569; stroke-width: 3px; fill: none; stroke-dasharray: 8 6; }
+      .arrow-head { fill: #475569; }
+      .arrow-head-green { fill: #10b981; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head-green" />
+    </marker>
+  </defs>
+
+  <rect width="1800" height="600" class="bg" />
+
+  <!-- BACKGROUND PANELS TO SEPARATE THE TWO PHASES -->
+  <rect x="40" y="40" width="1020" height="520" fill="rgba(16, 185, 129, 0.02)" stroke="#10b981" stroke-width="1" rx="16" />
+  <text x="550" y="80" class="text-accent" style="font-size: 18px; letter-spacing: 1px;">COMPLETED &amp; TESTED IN MATLAB</text>
+  
+  <rect x="1100" y="40" width="660" height="520" fill="transparent" stroke="#475569" stroke-width="2" stroke-dasharray="12 8" rx="16" />
+  <text x="1430" y="80" class="text-sub" style="font-size: 18px; letter-spacing: 1px;">INVESTIGATED FPGA DEPLOYMENT PATH</text>
+
+
+  <!-- ==================== COMPLETED MATLAB PIPELINE ==================== -->
+  
+  <!-- 1. LDR Capture -->
+  <rect x="80" y="160" width="200" height="120" class="box" />
+  <!-- Mini Thumbnails -->
+  <rect x="110" y="180" width="40" height="30" fill="#0f172a" stroke="#94a3b8" />
+  <rect x="160" y="180" width="40" height="30" fill="#334155" stroke="#94a3b8" />
+  <rect x="210" y="180" width="40" height="30" fill="#f8fafc" stroke="#94a3b8" />
+  
+  <text x="180" y="245" class="text-title">Bracketed LDR</text>
+  <text x="180" y="265" class="text-title">Images</text>
+
+  <path d="M 280 220 L 320 220" class="line-green" marker-end="url(#arrow-green)" />
+
+  <!-- 2. Exposure Info -->
+  <rect x="330" y="160" width="200" height="120" class="box" />
+  <text x="430" y="210" class="text-title">Exposure Data</text>
+  <text x="430" y="245" class="text-accent" style="font-size: 14px;">0.0333 s → 4.000 s</text>
+
+  <path d="M 530 220 L 570 220" class="line-green" marker-end="url(#arrow-green)" />
+
+  <!-- 3. HDR Reconstruction -->
+  <g class="glow">
+    <rect x="580" y="160" width="200" height="120" class="box-green" />
+  </g>
+  <text x="680" y="210" class="text-title">HDR Radiance</text>
+  <text x="680" y="230" class="text-title">Reconstruction</text>
+  <text x="680" y="260" class="text-sub" style="font-size: 12px;">Relative Exp. / Camera Resp.</text>
+
+  <path d="M 780 220 L 820 220" class="line-green" marker-end="url(#arrow-green)" />
+
+  <!-- 4. Tone Mapping & Result -->
+  <g class="glow">
+    <rect x="830" y="160" width="200" height="120" class="box-green" />
+  </g>
+  <text x="930" y="210" class="text-title">Tone Mapping</text>
+  <text x="930" y="245" class="text-sub" style="font-size: 13px;">Displayable HDR Image</text>
+
+  <!-- Software Result Badge -->
+  <rect x="330" y="380" width="450" height="100" fill="#0f172a" stroke="#10b981" stroke-width="2" rx="12" />
+  <text x="555" y="420" class="text-accent" style="font-size: 18px;">Software Validation</text>
+  <text x="555" y="450" class="text-title">6-Exposure HDR Fusion</text>
+  <text x="555" y="470" class="text-sub" style="font-size: 14px;">Tone-Mapped Output Generated</text>
+
+  <!-- Connection to Future Work -->
+  <path d="M 1030 220 L 1140 220" class="line-dashed" marker-end="url(#arrow)" />
+
+
+  <!-- ==================== INVESTIGATED FPGA PATH ==================== -->
+  
+  <!-- 5. Simulink Conversion -->
+  <rect x="1160" y="120" width="200" height="100" class="box-dashed" />
+  <text x="1260" y="165" class="text-title" style="fill: #cbd5e1;">MATLAB to</text>
+  <text x="1260" y="185" class="text-title" style="fill: #cbd5e1;">Simulink Model</text>
+  <text x="1260" y="205" class="text-sub" style="font-size: 12px;">Fixed-Point Conversion</text>
+
+  <path d="M 1360 170 L 1400 170" class="line-dashed" marker-end="url(#arrow)" />
+
+  <!-- 6. HDL Generation -->
+  <rect x="1420" y="120" width="200" height="100" class="box-dashed" />
+  <text x="1520" y="165" class="text-title" style="fill: #cbd5e1;">HDL Generation</text>
+  <text x="1520" y="195" class="text-sub" style="font-size: 12px;">Synthesizable Logic</text>
+
+  <!-- Path drops down -->
+  <path d="M 1520 220 L 1520 250" class="line-dashed" marker-end="url(#arrow)" />
+
+  <!-- 7. FPGA Deployment -->
+  <rect x="1420" y="270" width="200" height="100" class="box-dashed" />
+  <text x="1520" y="315" class="text-title" style="fill: #cbd5e1;">FPGA Processing</text>
+  <text x="1520" y="345" class="text-sub" style="font-size: 12px;">Real-Time Deployment</text>
+
+  <path d="M 1420 320 L 1380 320" class="line-dashed" marker-end="url(#arrow)" />
+
+  <!-- 8. Wearable Display -->
+  <rect x="1160" y="270" width="200" height="100" class="box-dashed" />
+  <text x="1260" y="315" class="text-title" style="fill: #cbd5e1;">Wearable</text>
+  <text x="1260" y="335" class="text-title" style="fill: #cbd5e1;">Visual Aid</text>
+
+  <!-- Constraints Identification Panel -->
+  <rect x="1160" y="420" width="460" height="100" fill="#0b1121" stroke="#475569" stroke-width="1" rx="12" />
+  <text x="1390" y="450" class="text-sub" style="font-size: 14px;">Identified Hardware Constraints</text>
+  <text x="1390" y="480" class="text-title" style="font-size: 16px;">Multi-Exposure Capture  •  Code-to-HDL Translation</text>
+  <text x="1390" y="505" class="text-title" style="font-size: 16px;">FPGA Board Compatibility</text>
+
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 600">
+  <defs>
+    <style>
+      .bg { fill: #0b1121; }
+      .box { fill: #0f172a; stroke: #1e293b; stroke-width: 2px; rx: 12px; }
+      .box-green { fill: #0f172a; stroke: #10b981; stroke-width: 2px; rx: 12px; }
+      .glow { filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.3)); }
+      .text-title { fill: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; }
+      .text-sub { fill: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 400; text-anchor: middle; }
+      .text-accent { fill: #10b981; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 600; text-anchor: middle; }
+      .text-code { fill: #cbd5e1; font-family: "SF Mono", Consolas, "Liberation Mono", Menlo, monospace; font-size: 14px; font-weight: 500; text-anchor: middle; }
+      .line { stroke: #475569; stroke-width: 3px; fill: none; }
+      .line-green { stroke: #10b981; stroke-width: 3px; fill: none; }
+      .arrow-head { fill: #475569; }
+      .arrow-head-green { fill: #10b981; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head-green" />
+    </marker>
+  </defs>
+
+  <rect width="1800" height="600" class="bg" />
+
+  <!-- Input Data -->
+  <rect x="50" y="240" width="180" height="120" class="box" />
+  <text x="140" y="275" class="text-title">CSV Gait Data</text>
+  <text x="140" y="300" class="text-sub" style="font-size: 12px;">Joint Angles / Moments</text>
+  <text x="140" y="320" class="text-sub" style="font-size: 12px;">Joint Velocities</text>
+  <text x="140" y="340" class="text-sub" style="font-size: 12px;">Left / Right GRF</text>
+
+  <path d="M 230 300 L 270 300" class="line" marker-end="url(#arrow)" />
+
+  <!-- Node 1: Playback -->
+  <g class="glow">
+    <rect x="280" y="260" width="220" height="80" class="box-green" />
+  </g>
+  <text x="390" y="305" class="text-code" style="fill: #10b981;">csv_playback_node</text>
+
+  <path d="M 500 300 L 540 300" class="line-green" marker-end="url(#arrow-green)" />
+
+  <!-- Node 2: Gait Phase -->
+  <rect x="550" y="260" width="220" height="80" class="box" />
+  <text x="660" y="295" class="text-code">gait_phase_node</text>
+  <text x="660" y="320" class="text-sub" style="font-size: 12px;">GRF-Based Stance Detection</text>
+
+  <path d="M 770 300 L 810 300" class="line" marker-end="url(#arrow)" />
+
+  <!-- Node 3: Assist -->
+  <g class="glow">
+    <rect x="820" y="240" width="220" height="120" class="box-green" />
+  </g>
+  <text x="930" y="275" class="text-code" style="fill: #10b981;">assist_node</text>
+  <text x="930" y="305" class="text-sub" style="font-size: 12px;">Hip — Full Gait</text>
+  <text x="930" y="325" class="text-sub" style="font-size: 12px;">Ankle — Stance</text>
+  <text x="930" y="345" class="text-accent" style="font-size: 12px;">20% Biological Moment</text>
+
+  <path d="M 1040 300 L 1080 300" class="line-green" marker-end="url(#arrow-green)" />
+
+  <!-- Node 4: Motor Command -->
+  <rect x="1090" y="250" width="220" height="100" class="box" />
+  <text x="1200" y="285" class="text-code">motor_command_node</text>
+  <text x="1200" y="315" class="text-sub" style="font-size: 12px;">Joint → Motor Conversion</text>
+  <text x="1200" y="335" class="text-sub" style="font-size: 12px;">Actuator Limits</text>
+
+  <path d="M 1310 300 L 1360 300" class="line" marker-end="url(#arrow)" />
+
+  <!-- Final Output -->
+  <rect x="1370" y="260" width="160" height="80" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="1" rx="8" />
+  <text x="1450" y="295" class="text-title" style="fill: #10b981;">Motor-Side</text>
+  <text x="1450" y="320" class="text-title" style="fill: #10b981;">Commands</text>
+
+  <!-- Parallel Branches -->
+  <path d="M 520 300 L 520 460 L 610 460" class="line" marker-end="url(#arrow)" />
+  <path d="M 790 300 L 790 460 L 880 460" class="line" marker-end="url(#arrow)" />
+  
+  <rect x="620" y="420" width="250" height="80" class="box" />
+  <text x="745" y="455" class="text-code">power_monitor_node</text>
+  <text x="745" y="480" class="text-sub" style="font-size: 12px;">Mechanical / Electrical Demand</text>
+
+  <path d="M 1060 300 L 1060 460 L 1150 460" class="line" marker-end="url(#arrow)" />
+  
+  <rect x="1160" y="420" width="220" height="80" class="box" />
+  <text x="1270" y="455" class="text-code">visualization_node</text>
+  <text x="1270" y="480" class="text-sub" style="font-size: 12px;">RViz2 · rqt</text>
+
+  <!-- Custom Messages Badge -->
+  <rect x="550" y="60" width="300" height="120" fill="#0f172a" stroke="#475569" stroke-width="2" stroke-dasharray="6 4" rx="12" />
+  <text x="700" y="95" class="text-title">Custom ROS Messages</text>
+  <text x="700" y="125" class="text-code" style="font-size: 13px; fill: #10b981;">msg/JointAngles.msg</text>
+  <text x="700" y="145" class="text-code" style="font-size: 13px; fill: #10b981;">msg/JointMoments.msg</text>
+  <text x="700" y="165" class="text-code" style="font-size: 13px; fill: #10b981;">msg/JointVelocities.msg</text>
+
+  <!-- Connection to pipeline -->
+  <path d="M 700 180 L 700 230" class="line" stroke-dasharray="4 4" />
+
+  <!-- Validation Status -->
+  <rect x="1370" y="80" width="350" height="100" class="box-green" filter="drop-shadow(0 0 8px rgba(16, 185, 129, 0.2))" />
+  <text x="1545" y="125" class="text-title" style="font-size: 20px; fill: #10b981;">End-to-End Pipeline Validated</text>
+  <text x="1545" y="150" class="text-sub">Sensor Data → Motor Command</text>
+</svg>

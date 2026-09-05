@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 600">
+  <defs>
+    <style>
+      .bg { fill: #0b1121; }
+      .box { fill: #0f172a; stroke: #1e293b; stroke-width: 2px; rx: 10px; }
+      .box-green { fill: #0f172a; stroke: #10b981; stroke-width: 2px; rx: 10px; }
+      .glow { filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.3)); }
+      .text-title { fill: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; }
+      .text-sub { fill: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 400; text-anchor: middle; }
+      .text-math { fill: #10b981; font-family: "SF Mono", Consolas, "Liberation Mono", Menlo, monospace; font-size: 16px; font-weight: 600; text-anchor: middle; }
+      .line { stroke: #475569; stroke-width: 3px; fill: none; }
+      .line-green { stroke: #10b981; stroke-width: 3px; fill: none; }
+      .arrow-head { fill: #475569; }
+      .arrow-head-green { fill: #10b981; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head-green" />
+    </marker>
+  </defs>
+
+  <rect width="1800" height="600" class="bg" />
+
+  <!-- Inputs -->
+  <rect x="40" y="240" width="180" height="100" class="box" />
+  <text x="130" y="280" class="text-title">Reference Pose</text>
+  <text x="130" y="305" class="text-math" style="fill: #f8fafc;">T_{se,d}, T_{se,d,next}</text>
+  
+  <path d="M 220 290 L 300 290" class="line-green" marker-end="url(#arrow-green)" />
+
+  <!-- Feedback Controller -->
+  <g class="glow">
+    <rect x="310" y="220" width="220" height="140" class="box-green" />
+  </g>
+  <text x="420" y="260" class="text-title">Feedforward +</text>
+  <text x="420" y="280" class="text-title">PI Feedback</text>
+  <text x="420" y="315" class="text-math">X_{err}</text>
+  <text x="420" y="335" class="text-sub" style="font-size: 12px;">Configuration Error</text>
+
+  <path d="M 530 290 L 610 290" class="line-green" marker-end="url(#arrow-green)" />
+  <text x="570" y="280" class="text-math">V</text>
+  <text x="570" y="315" class="text-sub" style="font-size: 12px;">Desired Twist</text>
+
+  <!-- Jacobian Processing -->
+  <rect x="620" y="240" width="260" height="100" class="box" />
+  <text x="750" y="280" class="text-title">Combined Jacobian</text>
+  <text x="750" y="305" class="text-math" style="fill: #f8fafc;">J_e = [J_{base} | J_{arm}]</text>
+
+  <path d="M 880 290 L 960 290" class="line" marker-end="url(#arrow)" />
+
+  <!-- Pseudoinverse -->
+  <rect x="970" y="240" width="220" height="100" class="box" />
+  <text x="1080" y="280" class="text-title">Moore–Penrose</text>
+  <text x="1080" y="300" class="text-title">Pseudoinverse</text>
+  <text x="1080" y="325" class="text-math" style="fill: #f8fafc;">J_e^†</text>
+
+  <path d="M 1190 290 L 1310 290" class="line-green" marker-end="url(#arrow-green)" />
+  <text x="1250" y="280" class="text-math">u, \theta</text>
+  <text x="1250" y="315" class="text-sub" style="font-size: 12px;">4 Wheel Speeds</text>
+  <text x="1250" y="335" class="text-sub" style="font-size: 12px;">5 Arm Speeds</text>
+
+  <!-- Odometry / NextState -->
+  <g class="glow">
+    <rect x="1320" y="240" width="200" height="100" class="box-green" />
+  </g>
+  <text x="1420" y="280" class="text-title">NextState Update</text>
+  <text x="1420" y="305" class="text-sub" style="font-size: 13px;">Euler Integration</text>
+  <text x="1420" y="325" class="text-accent" style="font-size: 13px;">Δt = 0.01 s</text>
+
+  <!-- Closing the Feedback Loop -->
+  <path d="M 1420 340 L 1420 480 L 420 480 L 420 360" class="line-green" marker-end="url(#arrow-green)" />
+  <text x="920" y="470" class="text-math">T_{se}</text>
+  <text x="920" y="505" class="text-sub">Current End-Effector Pose Feedback</text>
+
+  <!-- Top Status Badge -->
+  <rect x="1450" y="60" width="280" height="50" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="2" rx="25" />
+  <text x="1590" y="90" class="text-title" style="fill: #10b981; font-size: 16px;">Closed-Loop Mobile Manipulation</text>
+</svg>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 600">
+  <defs>
+    <style>
+      .bg { fill: #0b1121; }
+      .box { fill: #0f172a; stroke: #1e293b; stroke-width: 2px; rx: 8px; }
+      .text-title { fill: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; }
+      .text-sub { fill: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; font-weight: 400; text-anchor: middle; }
+      .text-accent { fill: #10b981; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 16px; font-weight: 700; text-anchor: middle; }
+      .path-line { stroke: #10b981; stroke-width: 4px; fill: none; stroke-linejoin: round; }
+      .path-line-dash { stroke: #10b981; stroke-width: 3px; fill: none; stroke-dasharray: 8 6; stroke-linejoin: round; }
+      .arrow-head-green { fill: #10b981; }
+    </style>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-head-green" />
+    </marker>
+  </defs>
+
+  <rect width="1800" height="600" class="bg" />
+
+  <text x="900" y="80" class="text-title" style="font-size: 26px;">8-Segment SE(3) Reference Trajectory</text>
+
+  <!-- Abstract KUKA youBot -->
+  <g transform="translate(200, 420)">
+    <!-- Chassis -->
+    <rect x="-60" y="-30" width="120" height="60" fill="#1e293b" stroke="#475569" stroke-width="2" rx="4" />
+    <!-- Mecanum Wheels -->
+    <rect x="-50" y="-40" width="30" height="10" fill="#334155" rx="2" />
+    <rect x="20" y="-40" width="30" height="10" fill="#334155" rx="2" />
+    <rect x="-50" y="30" width="30" height="10" fill="#334155" rx="2" />
+    <rect x="20" y="30" width="30" height="10" fill="#334155" rx="2" />
+    <!-- Arm -->
+    <circle cx="0" cy="0" r="15" fill="#10b981" />
+    <line x1="0" y1="0" x2="0" y2="-60" stroke="#10b981" stroke-width="6" stroke-linecap="round" />
+    <circle cx="0" cy="-60" r="8" fill="#f8fafc" />
+    <text x="0" y="70" class="text-sub" style="font-size: 16px;">KUKA youBot Start</text>
+  </g>
+
+  <!-- Initial Cube Location -->
+  <rect x="500" y="440" width="40" height="40" fill="#f59e0b" stroke="#b45309" stroke-width="2" />
+  <text x="520" y="510" class="text-sub" style="font-size: 16px;">Initial Cube Pose</text>
+
+  <!-- Final Cube Location -->
+  <rect x="1400" y="440" width="40" height="40" fill="transparent" stroke="#f59e0b" stroke-width="4" stroke-dasharray="6 4" />
+  <text x="1420" y="510" class="text-sub" style="font-size: 16px;">Placement Pose</text>
+
+  <!-- Trajectory Points -->
+  <!-- 1. Initial Standoff -->
+  <circle cx="520" cy="200" r="8" fill="#f8fafc" />
+  <text x="520" y="170" class="text-title">Initial Standoff</text>
+  
+  <!-- 2. Final Standoff -->
+  <circle cx="1420" cy="200" r="8" fill="#f8fafc" />
+  <text x="1420" y="170" class="text-title">Final Standoff</text>
+
+  <!-- Trajectory Paths and Labels -->
+  
+  <!-- Segment 1: Start to Initial Standoff -->
+  <path d="M 200 350 C 200 200, 350 200, 500 200" class="path-line" marker-end="url(#arrow-green)" />
+  <circle cx="350" cy="235" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+  <text x="350" y="240" class="text-accent">1</text>
+  <text x="350" y="270" class="text-sub">Move to Standoff</text>
+
+  <!-- Segment 2: Descend to Grasp -->
+  <path d="M 510 210 L 510 420" class="path-line" marker-end="url(#arrow-green)" />
+  <circle cx="480" cy="300" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+  <text x="480" y="305" class="text-accent">2</text>
+  <text x="440" y="305" class="text-sub" style="text-anchor: end;">Descend</text>
+
+  <!-- Segment 3: Close Gripper -->
+  <rect x="550" y="430" width="120" height="40" class="box" />
+  <circle cx="565" cy="450" r="10" fill="#10b981" />
+  <text x="565" y="455" class="text-accent" style="fill: #0f172a; font-size: 12px;">3</text>
+  <text x="630" y="455" class="text-title" style="font-size: 14px;">Close Gripper</text>
+
+  <!-- Segment 4: Return to Initial Standoff -->
+  <path d="M 530 420 L 530 210" class="path-line-dash" marker-end="url(#arrow-green)" />
+  <circle cx="560" cy="350" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+  <text x="560" y="355" class="text-accent">4</text>
+  <text x="590" y="355" class="text-sub" style="text-anchor: start;">Ascend</text>
+
+  <!-- Segment 5: Transport to Final Standoff -->
+  <path d="M 540 200 L 1390 200" class="path-line" marker-end="url(#arrow-green)" />
+  <circle cx="970" cy="200" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+  <text x="970" y="205" class="text-accent">5</text>
+  <text x="970" y="235" class="text-sub">Transport Cube</text>
+
+  <!-- Segment 6: Descend to Place -->
+  <path d="M 1410 210 L 1410 420" class="path-line" marker-end="url(#arrow-green)" />
+  <circle cx="1380" cy="300" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+  <text x="1380" y="305" class="text-accent">6</text>
+  <text x="1340" y="305" class="text-sub" style="text-anchor: end;">Descend</text>
+
+  <!-- Segment 7: Open Gripper -->
+  <rect x="1460" y="430" width="120" height="40" class="box" />
+  <circle cx="1475" cy="450" r="10" fill="#10b981" />
+  <text x="1475" y="455" class="text-accent" style="fill: #0f172a; font-size: 12px;">7</text>
+  <text x="1535" y="455" class="text-title" style="font-size: 14px;">Open Gripper</text>
+
+  <!-- Segment 8: Return to Final Standoff -->
+  <path d="M 1430 420 L 1430 210" class="path-line-dash" marker-end="url(#arrow-green)" />
+  <circle cx="1460" cy="350" r="14" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+  <text x="1460" y="355" class="text-accent">8</text>
+  <text x="1490" y="355" class="text-sub" style="text-anchor: start;">Ascend</text>
+
+</svg>

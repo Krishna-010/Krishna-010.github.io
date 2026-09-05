@@ -1,0 +1,12 @@
+const fs = require('fs');
+let html = fs.readFileSync('index.html', 'utf8');
+const startMarker = '<div class="projects-grid"';
+let startIdx = html.indexOf(startMarker);
+startIdx = html.indexOf('>', startIdx) + 1;
+const endMarker = '<!-- Projects Detail View -->';
+let endIdx = html.indexOf(endMarker);
+endIdx = html.lastIndexOf('</div>', endIdx);
+endIdx = html.lastIndexOf('</div>', endIdx - 1);
+let gridHTML = html.substring(startIdx, endIdx);
+console.log(gridHTML.substring(0, 100));
+console.log("IndexOf project-item-card:", gridHTML.indexOf('project-item-card'));
